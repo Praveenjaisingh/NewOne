@@ -28,12 +28,10 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-/**
- * Send email via SMTP
- * @param {Object} param0
- * @param {string} param0.subject
- * @param {string} param0.html
- */
+
+ @param {Object} param0
+ @param {string} param0.subject
+ @param {string} param0.html
 const sendMail = async ({ subject, html }) => {
     if (!subject || !html) {
         throw new Error("❌ Email subject or content missing");
