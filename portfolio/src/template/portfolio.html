@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html,
+        body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #333;
+            padding: 20px 5%;
+        }
+
+        .navbar .logo {
+            color: #fff;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .navbar .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar .nav-links li {
+            margin-left: 20px;
+        }
+
+        .navbar .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+            padding: 5px 10px;
+        }
+
+        .navbar .nav-links li a:hover {
+            color: #7cf03d;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 100vh;
+            height: auto;
+            background: #1f242d;
+            color: #fff;
+            text-align: center;
+            padding: 80px 20px 40px;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 {
+            margin-bottom: 20px;
+        }
+
+        .hero span {
+            color: #7cf03d;
+        }
+
+        .hero p {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .hero .btn {
+            padding: 10px 30px;
+            background: #7cf03d;
+            color: #1f242d;
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .hero .btn:hover {
+            background: #5a8f1d;
+        }
+
+        .hero .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero .hero-image img {
+            max-width: 280px;
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeInScale 1.5s ease-out, borderAnimation 3s infinite, glowEffect 1.5s ease-in-out infinite alternate;
+        }
+
+        .about {
+            padding: 50px 5%;
+            background: #fff;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .skills {
+            padding: 50px 5%;
+            background-color: #f4f4f9;
+            text-align: center;
+        }
+
+        .skills h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .skill {
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+
+        .skill span {
+            font-size: 18px;
+            font-weight: 500;
+            color: #1f242d;
+        }
+
+        .skill-bar {
+            background: #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 30px;
+            margin-top: 8px;
+        }
+
+        .skill-percentage {
+            height: 100%;
+            background: #7cf03d;
+            color: #1f242d;
+            font-weight: bold;
+            text-align: right;
+            padding: 5px 10px;
+            border-radius: 8px 0 0 8px;
+            transition: width 1s ease;
+        }
+
+        .projects {
+            padding: 50px 5%;
+            background: #f4f4f9;
+            text-align: center;
+        }
+
+        .projects h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .project-card {
+            width: 100%;
+            background: #fff;
+            margin: 15px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            font-size: 16px;
+        }
+
+        .contact {
+            padding: 50px 5%;
+            background: #1f242d;
+            color: #fff;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .contact form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact form label {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .contact form input,
+        .contact form textarea {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .contact form button {
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #7cf03d, #32cd32);
+            color: #1f242d;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .contact form button:hover {
+            background: linear-gradient(90deg, #5a8f1d, #228b22);
+            transform: scale(1.05);
+        }
+
+        .contact .sci {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .contact .sci a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7cf03d, #32cd32);
+            color: #1f242d;
+            font-size: 24px;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .contact .sci a:hover {
+            transform: scale(1.2);
+        }
+
+        .footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 768px) {
+
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .navbar .nav-links {
+                flex-direction: column;
+                gap: 15px;
+                margin-top: 15px;
+            }
+
+            .navbar .nav-links li {
+                margin: 0;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 20px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 20px;
+            }
+
+            .hero .hero-image {
+                margin-top: 30px;
+            }
+
+            .hero .hero-image img {
+                max-width: 200px;
+            }
+
+            .about h2,
+            .skills h2,
+            .projects h2,
+            .contact h2 {
+                font-size: 28px;
+            }
+
+            .about p,
+            .project-card p {
+                font-size: 16px;
+            }
+
+            .skill span {
+                font-size: 16px;
+            }
+
+            .skill-bar {
+                height: 25px;
+            }
+
+            .skill-percentage {
+                font-size: 14px;
+                padding: 4px 8px;
+            }
+
+            .project-card {
+                padding: 15px;
+            }
+
+            .contact form input,
+            .contact form textarea {
+                font-size: 14px;
+            }
+
+            .contact form button {
+                font-size: 16px;
+            }
+
+            .footer {
+                font-size: 14px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">My Portfolio</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Hello, I'm <span>PRAVEEN</span></h1>
+            <p>A passionate Full-stack Developer</p>
+            <h2>EMAIL I'D:<span>(praveendp143@gmail.com)</span></h2>
+            <h2>contact:(8870346885)</h2>
+            <a href="#contact" class="btn">Contact Me</a>
+        </div>
+        <div class="hero-image">
+            <img src="{{ asset('images/praveen.png') }}" alt="PRAVEEN">
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2>About Me</h2>
+        <p>Hello, I’m PRAVEEN, a full-stack developer with a passion for creating beautiful, user-friendly websites and
+            web applications. I am skilled in HTML, CSS,JavaScript,java,sql(oracle). I'm always eager to learn new
+            technologies and grow my skills to stay up-to-date with the latest industry trends.</p>
+    </section>
+
+    <section id="skills" class="skills">
+        <h2>Programming Skills</h2>
+        <div class="skill">
+            <span>HTML</span>
+            <div class="skill-bar">
+                <div class="skill-percentage" style="width: 80%;">80%</div>
+            </div>
+        </div>
+        <div class="skill">
+            <span>CSS</span>
+            <div class="skill-bar">
+                <div class="skill-percentage" style="width: 75%;">75%</div>
+            </div>
+        </div>
+        <div class="skill">
+            <span>JavaScript</span>
+            <div class="skill-bar">
+                <div class="skill-percentage" style="width: 65%;">65%</div>
+            </div>
+        </div>
+        <div class="skill">
+            <span>Java</span>
+            <div class="skill-bar">
+                <div class="skill-percentage" style="width: 75%;">75%</div>
+            </div>
+        </div>
+        <div class="skill">
+            <span>Sql(oracle)</span>
+            <div class="skill-bar">
+                <div class="skill-percentage" style="width: 70%;">70%</div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="project-card">
+        <h3>Project 1</h3>
+        <h4>MUSIC STREAMING APP:</h4>
+        <p>* Designed a user friendly music streaming app with unique FM radio feature,enhancing user engagement and
+            accessibility.
+            <br>* Focused on intuitive UI/UX design, ensuring smooth navigation and and a visually applealing interface.
+        </p>
+    </div>
+    <div class="project-card">
+        <h3>project-2</h3>
+        <h4>E-COMMERCE APP:</h4>
+        <p>*Developed a full-stack e-commerce platform, Smart AgriConnect, focused on agricultural product sales using
+            HTML, CSS, JavaScript, PHP, and MySQL. The platform features user authentication, dynamic product listings,
+            shopping cart functionality, and order management.<br> *A responsive user interface ensures a seamless
+            experience across devices, while the backend efficiently manages user, product, and transaction data.
+            Enhanced overall usability and security by optimizing both frontend code and backend database queries,
+            delivering a reliable solution tailored for farmers and agricultural buyers. </p>
+    </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Contact Me</h2>
+        <form action="{{ route('Portfolio.store') }}" method="POST">
+            @csrf
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <button type="submit">Send message</button>
+        </form>
+
+        <div class="sci">
+            <a href="https://github.com/praveenjaisingh" target="_blank" aria-label="PRAVEEN J">
+                <i class='bx bxl-github'></i>
+            </a>
+            <a href="https://linkedin.com/in/Praveen-j-37b64632b" target="_blank" aria-label="praveen j">
+                <i class='bx bxl-linkedin'></i>
+            </a>
+        </div>
+
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 PRAVEEN | All Rights Reserved</p>
+    </footer>
+    <script src="script.js"></Script>
+</body>
+
+</html>
