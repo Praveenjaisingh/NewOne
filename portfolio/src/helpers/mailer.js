@@ -1,30 +1,36 @@
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-    host: process.env.MAIL_HOST,
-    port: Number(process.env.MAIL_PORT),
-    secure: false, // TLS uses false
+    host: process.env.SMTP_HOST,
+    port: Number(process.env.SMTP_PORT),
+    secure: false, // TLS
     auth: {
-        user: process.env.MAIL_USERNAME,
-        pass: process.env.MAIL_PASSWORD,
+        user: process.env.SMTP_USERNAME,
+        pass: process.env.SMTP_PASSWORD,
     },
 });
 
-const sendMail = async ({ to, subject, html }) => {
+const sendMail = async ({ subject, html, to }) => {
+    const recipient = to || process.env.ADMIN_EMAIL;
+
+    if (!recipient) {
+        throw new Error("Recipient email is missing");
+    }
+
     await transporter.sendMail({
-        from: `"${process.env.MAIL_FROM_NAME}" <${process.env.MAIL_FROM}>`,
-        to: process.env.ADMIN_EMAIL,
+        from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM}>`,
+        to: recipient,
         subject,
         html,
     });
 };
-transporter.verify((error, success) => {
+
+transporter.verify((error) => {
     if (error) {
         console.error("❌ SMTP ERROR:", error);
     } else {
         console.log("✅ SMTP READY");
     }
 });
-
 
 module.exports = { sendMail };
