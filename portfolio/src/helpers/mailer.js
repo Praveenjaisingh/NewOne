@@ -10,21 +10,7 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-const sendMail = async ({ subject, html, to }) => {
-    const recipient = to || process.env.ADMIN_EMAIL;
-
-    if (!recipient) {
-        throw new Error("Recipient email is missing");
-    }
-    console.log("ADMIN_EMAIL:", process.env.ADMIN_EMAIL);
-    await transporter.sendMail({
-        from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM}>`,
-        to: recipient,
-        subject,
-        html,
-    });
-};
-
+// Verify SMTP once (safe for Vercel logs)
 transporter.verify((error) => {
     if (error) {
         console.error("❌ SMTP ERROR:", error);
@@ -32,5 +18,20 @@ transporter.verify((error) => {
         console.log("✅ SMTP READY");
     }
 });
+
+const sendMail = async ({ to, subject, html }) => {
+    const recipient = to || process.env.ADMIN_EMAIL;
+
+    if (!recipient) {
+        throw new Error("ADMIN_EMAIL is not configured in environment");
+    }
+
+    await transporter.sendMail({
+        from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM}>`,
+        to: recipient,
+        subject,
+        html,
+    });
+};
 
 module.exports = { sendMail };
