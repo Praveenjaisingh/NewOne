@@ -16,7 +16,7 @@ const sendMail = async ({ subject, html, to }) => {
     if (!recipient) {
         throw new Error("Recipient email is missing");
     }
-
+    console.log("ADMIN_EMAIL:", process.env.ADMIN_EMAIL);
     await transporter.sendMail({
         from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM}>`,
         to: recipient,
